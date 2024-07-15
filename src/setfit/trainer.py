@@ -858,21 +858,16 @@ class Trainer(ColumnMappingMixin):
         )
         return results
 
-    def hyperparameter_search(
-    self,
-    hp_space,
-    n_trials,
-    direction,
-) -> Union[BestRun, List[BestRun]]:
-
-    trainer.hp_search_backend = HPSearchBackend.OPTUNA
-    self.hp_space = hp_space
-    trainer.hp_name = None
-    trainer.compute_objective = default_compute_objective
-    best_run = run_hp_search_optuna(trainer, n_trials, direction)
-    self.hp_search_backend = None
-    print("hpsearch")
-    return best_run
+    def hyperparameter_search( self, hp_space, n_trials, direction) -> Union[BestRun, List[BestRun]]:
+        trainer.hp_search_backend = HPSearchBackend.OPTUNA
+        self.hp_space = hp_space
+        trainer.hp_name = None
+        trainer.compute_objective = default_compute_objective
+        best_run = run_hp_search_optuna(trainer, n_trials, direction)
+        self.hp_search_backend = None
+        print("hpsearch")
+        return best_run
+    
     def push_to_hub(self, repo_id: str, **kwargs) -> str:
         """Upload model checkpoint to the Hub using `huggingface_hub`.
 
