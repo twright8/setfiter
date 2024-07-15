@@ -858,7 +858,7 @@ class Trainer(ColumnMappingMixin):
         )
         return results
 
-    def hyperparameter_search( self, hp_space, n_trials, direction) -> Union[BestRun, List[BestRun]]:
+    def hyperparameter_search(self, hp_space, n_trials, direction) -> Union[BestRun, List[BestRun]]:
         trainer.hp_search_backend = HPSearchBackend.OPTUNA
         self.hp_space = hp_space
         trainer.hp_name = None
