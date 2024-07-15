@@ -19,6 +19,7 @@ def default_hp_search_backend():
 def run_hp_search_optuna(trainer, n_trials, direction, **kwargs):
 
     def _objective(trial, checkpoint_dir=None):
+        print("objectify")
         checkpoint = None
         if checkpoint_dir:
             for subdir in os.listdir(checkpoint_dir):
